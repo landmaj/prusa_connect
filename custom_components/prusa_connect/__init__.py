@@ -87,13 +87,10 @@ def setup(hass, config):
         name = printer[CONF_NAME]
         protocol = "https" if printer[CONF_SSL] else "http"
         url = f"{protocol}://{printer[CONF_HOST]}/api/telemetry"
-        try:
-            prusa_connect_api = PrusaConnectAPI(url)
-            printers[url] = prusa_connect_api
-            prusa_connect_api.get()
-        except requests.exceptions.RequestException as conn_err:
-            _LOGGER.error("Error setting up Prusa Conect API: %r", conn_err)
-            continue
+
+        prusa_connect_api = PrusaConnectAPI(url)
+        printers[url] = prusa_connect_api
+        prusa_connect_api.get()
 
         sensors = printer[CONF_SENSORS][CONF_MONITORED_CONDITIONS]
         load_platform(
@@ -128,7 +125,7 @@ class PrusaConnectAPI:
             return self.last_reading[0]
 
         try:
-            response = requests.get(self.url, timeout=9)
+            response = requests.get(self.url, timeout=5)
             response.raise_for_status()
             self.last_reading[0] = response.json()
             self.last_reading[1] = time.time()
