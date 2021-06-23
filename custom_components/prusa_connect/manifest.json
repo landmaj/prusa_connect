@@ -1,0 +1,9 @@
+{
+    "domain": "prusa_connect",
+    "name": "Prusa Connect",
+    "documentation": "https://github.com/landmaj/prusa_connect",
+    "after_dependencies": ["discovery"],
+    "requirements": ["requests"],
+    "codeowners": ["@landmaj"],
+    "version": "1.0"
+}
