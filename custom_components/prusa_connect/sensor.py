@@ -67,7 +67,7 @@ class PrusaConnectSensor(SensorEntity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        if self.sensor_type == "print_dur":
+        if self.sensor_type == "print_dur" and self._state is not None:
             return parse_print_dur(self._state)
         return self._state
 
