@@ -33,7 +33,7 @@ def has_all_unique_names(value):
 
 
 SENSOR_TYPES = {
-    # Key, unit, icon
+    # key, unit, icon
     "Current State": ["state", None, "mdi:printer-3d"],
     "Bed Temperature": ["temp_bed", TEMP_CELSIUS, "mdi:thermometer"],
     "Job Percentage": ["progress", PERCENTAGE, "mdi:file-percent"],

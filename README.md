@@ -11,26 +11,48 @@ allowing you to use existing custom cards, for example
 If a custom card or something else intended for OctoPrint does not work, please report 
 it as a bug.
 
-# Table of Contents
-- [Installation](#-installation)
-  - [Method 1: HACS](#method-1-hacs)
-  - [Method 2: Manual](#method-2-manual)
-- [Config](#-config)
-  - [Graphical](#-Graphical)
-  - [Manual](#manual)
-    - [Required](#required)
-    - [Optional](#optional)
-
 
 ## Installation
 ---
-### Method 1: HACS
+
+### HACS
+
 1. Open _HACS_ and navigate to _Integrations_ Section
 2. Open the Overflow Menu (⋮) in the top right corner and click on _Custom repositories_
 3. Paste `https://github.com/landmaj/prusa_connect` into the input field and select `Integration` from the dropdown
 4. Click the Install Button on the highlighted Card titled _Prusa Connect_
+5. Add entry in `configuration.yaml`
+6. Restart Home Assistant
 
-### Method 2: Manual
+### Manual
 
 1. Download the repository as a ZIP package and extract it
 2. Copy `custom_components` directory to your `config` directory (this is where your `configuration.yaml` lives)
+3. Add entry in `configuration.yaml`
+4. Restart Home Assistant
+
+
+## Configuration
+---
+Add this to `configuration.yaml`:
+```yaml
+prusa_connect:
+  - host: 192.168.1.2
+    name: Prusa Mini
+    sensors:  # optional
+      monitored_conditions:  # optional, defaults to ALL
+        - "Current State"
+        - "Job Percentage"
+        - "Nozzle Temperature"
+        - "Bed Temperature"
+        - "Time Elapsed"
+        - "Time Remaining"
+        - "Project Name"
+        - "Material"
+```
+
+## Screenshots
+---
+
+### In combination with [threedy](https://github.com/dangreco/threedy)
+![threedy](https://github.com/landmaj/prusa_connect/raw/master/threedy.png)
