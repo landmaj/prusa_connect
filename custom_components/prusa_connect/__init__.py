@@ -136,10 +136,10 @@ class PrusaConnectAPI:
             self.error_logged = False
             return response.json()
 
-        except requests.RequestException as exc:
+        except requests.exceptions.RequestException as exc:
             log_string = "Failed to update Prusa Connect status. Error: %s" % exc
             if not self.error_logged:
-                _LOGGER.error(log_string)
+                _LOGGER.warning(log_string)
                 self.available = False
                 self.error_logged = True
             return None
